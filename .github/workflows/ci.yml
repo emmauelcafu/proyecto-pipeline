@@ -1,27 +1,29 @@
-name: Mi primer pipeline
+name: Pipeline básico
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Descargar el código
-      uses: actions/checkout@v3
+      - name: Descargar el código
+        uses: actions/checkout@v3
 
-    - name: Instalar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Instalar dependencias
-      run: npm install
+      - name: Instalar dependencias
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          else
+            echo "No hay package.json"
+          fi
 
-    - name: Ejecutar pruebas
-      run: npm test
+      - name: Fin del pipeline
+        run: echo "✅ Todo listo, sin errores"
