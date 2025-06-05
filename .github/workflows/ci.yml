@@ -1,4 +1,4 @@
-name: Pipeline básico
+name: Mi primer pipeline
 
 on:
   push:
@@ -18,12 +18,7 @@ jobs:
           node-version: 18
 
       - name: Instalar dependencias
-        run: |
-          if [ -f package.json ]; then
-            npm install
-          else
-            echo "No hay package.json"
-          fi
+        run: npm install
 
-      - name: Fin del pipeline
-        run: echo "✅ Todo listo, sin errores"
+      - name: Iniciar app (solo ejemplo)
+        run: echo "Build exitoso"
